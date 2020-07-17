@@ -16,6 +16,7 @@ const generateMarkdown = data => {
     * [Badges](#badges)
     * [Contributing](#contributing)
     * [Tests](#tests)
+    * [Contact](#contact)
     
     ## Installation
 
@@ -44,8 +45,13 @@ const generateMarkdown = data => {
 
     ## Tests
 
+    You can run tests with the following command:
     ${data.tests}
 
+    ## Contact
+
+    Email me with your questions or comments at ${data.email}.
+    Check out my other projects at [${data.github}](https://github.com/${data.github}/).
 `;
 }
 
