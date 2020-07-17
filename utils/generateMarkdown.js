@@ -10,29 +10,43 @@ const generateMarkdown = data => {
     ## Table of Contents
 
     * [Installation](#installation)
+    * [Usage](#usage)
+    * [Credits](#credits)
+    * [License](#license)
+    * [Badges](#badges)
+    * [Contributing](#contributing)
+    * [Tests](#tests)
+    
+    ## Installation
+
+    ${data.installation}
+
+    ## Usage
+
+    ${data.usage}
+    SHOULD I ADD A STEP BY STEP PROCEDURE?
+
+    ## Credits
+
+    TO BE DEVELOPED
+
+    ## License
+
+    ${data.license}
+
+    ## Badges
+
+    TO BE DEVELOPED
+
+    ## Contributing
+
+    ${data.contributing}
+
+    ## Tests
+
+    ${data.tests}
+
 `;
 }
 
 module.exports = generateMarkdown;
-
-// const fs = require("fs");
-
-// fs.writeFile("log.txt", process.argv[2], function(err) {
-
-//   if (err) {
-//     return console.log(err);
-//   }
-
-//   console.log("Done!");
-
-// });
-
-// fs.readFile("log.txt", "utf8", function(error, log) {
-
-//   if (error) {
-//     return console.log(error);
-//   }
-  
-//   console.log(log);
-  
-//   });

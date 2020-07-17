@@ -67,8 +67,8 @@ const questions = [
     {
         type: 'input',
         name: 'contributing',
-        message: 'How can other developers contribute to your project?'
-        //default: 'The Contributor Covenant'
+        message: 'What are the guidelines for other developers to contribute to your project?',
+        default: '[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)'
     }
     {
         type: 'input',
