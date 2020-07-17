@@ -46,7 +46,7 @@ const generateMarkdown = data => {
     ## Tests
 
     You can run tests with the following command:
-    ${data.tests}
+    ${data.testing}
 
     ## Contact
 
