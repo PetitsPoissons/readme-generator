@@ -15,13 +15,42 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'projectName',
+        name: 'title',
         message: "What is your project's name?"
     },
     {
         type: 'input',
         name: 'description',
         maeesage: 'Please write a short description of your project:'
+    },
+    {
+        type: 'input',
+        name: 'installation',
+        message: 'What is the command to install dependencies?',
+        default: 'npm i'
+    },
+    {
+        type: 'input',
+        name: 'usage',
+        message: 'What are instructions for the user to use the repo?',
+    },
+    {
+        type: 'confirm',
+        name: 'confirmCollaborators',
+        message: 'Did you have any collaborators on this project?',
+        default: false
+    },
+    {
+        type: 'confirm',
+        name: 'confirmAssets',
+        message: 'Did you use any third-party assets that require attribution for this project?',
+        default: false
+    },
+    {
+        type: 'confirm',
+        name: 'confirmTutorials',
+        message: 'Did you follow any tutorials this project?',
+        default: false
     },
     {
         type: 'checkbox',
@@ -32,25 +61,20 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'cmdDependencies',
-        message: 'What is the command to install dependencies?',
-        default: 'npm i'
+        name: 'badges',
+        message: 'NOT SURE HOW TO DO BADGES'
     },
     {
         type: 'input',
-        name: 'cmdTests',
+        name: 'contributing',
+        message: 'How can other developers contribute to your project?'
+        //default: 'The Contributor Covenant'
+    }
+    {
+        type: 'input',
+        name: 'tests',
         message: 'What is the command to run tests?',
         defaults: 'npm runtests'
-    },
-    {
-        type: 'input',
-        name: 'howToUse',
-        message: 'What are instructions for the user to use the repo?',
-    },
-    {
-        type: 'input',
-        name: 'howToContribute',
-        message: 'What are instructions for the user to contribute to the repo?'
     }
 ];
 
