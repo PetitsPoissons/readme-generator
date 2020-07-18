@@ -1,7 +1,8 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
+const generateMarkdown = require('./utils/generateMarkdown');
 
-// array of questions for user
+// arrays of questions for user
 const questions = [
     {
         type: 'input',
@@ -80,26 +81,55 @@ const questions = [
     {
         type: 'confirm',
         name: 'confirmCredits',
-        message: 'Do you want to credit any collaborators or third-party assets for this project?',
+        message: 'Are there any credit attributions you want to make for this project?',
         default: false
-    }/*
+    }
+];
+
+const creditQuestions = [
     {
-        type: 'confirm',
-        name: 'confirmAssets',
-        message: 'Did you use any third-party assets that require attribution for this project?',
-        default: false
+        type: 'input',
+        name: 'creditName',
+        message: 'Please enter a collaborator or third-party asset you want to credit:'
+    },
+    {
+        type: 'input',
+        name: 'creditLink',
+        message: 'Please enter a link for your collaborator or the third-party asset you used:'
     },
     {
         type: 'confirm',
-        name: 'confirmTutorials',
-        message: 'Did you follow any tutorials for this project?',
+        name: 'askAgain',
+        message: 'Would you like to add another credit attribution?',
         default: false
-    },*/
+    }
 ];
+
+const getCredits = function(readmeData) {
+    if (!readmeData.confirmCredits) {
+        return readmeData;
+    };
+    if (!readmeData.credits) {
+        readmeData.credits = [];
+    };
+    console.log(`
+    ********** Add a credit attribution **********
+    `);
+    return inquirer
+            .prompt(creditQuestions)
+            .then(creditData => {
+                readmeData.credits.push(creditData);
+                if (creditData.askAgain) {
+                    return getCredits(readmeData);
+                } else {
+                    return readmeData;
+                }
+            });
+}
 
 // function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, JSON.stringify(data, numm, '\t'), function(err) {
+    fs.writeFile(fileName, data, function(err) {
         if (err) {
             return console.log(err);
         }
@@ -111,7 +141,10 @@ function writeToFile(fileName, data) {
 function init() {
     inquirer
     .prompt(questions)
-    .then(data => console.log(data));
+    .then(getCredits)
+    .then(readmeData => generateMarkdown(readmeData))
+    .then(pageMD => writeToFile('README.md', pageMD))
+    .catch(err => console.log(err));
 };
 
 // function call to initialize program
