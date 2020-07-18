@@ -1,3 +1,10 @@
+// // function to generate credits section
+// const generateCredits = creditsArr => {
+//   return `
+//     Credits should be attributed to:
+//   `
+// }
+
 // function to generate markdown for README
 const generateMarkdown = data => {
   return `
@@ -29,7 +36,11 @@ const generateMarkdown = data => {
 
     ## Credits
 
-    TO BE DEVELOPED
+    ${data.credits.map(({ creditName, creditLink }) => {
+      return `
+        - [${creditName}](${creditLink})
+      `
+    })}
 
     ## License
 
