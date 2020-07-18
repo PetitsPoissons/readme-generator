@@ -1,9 +1,63 @@
-// // function to generate credits section
-// const generateCredits = creditsArr => {
-//   return `
-//     Credits should be attributed to:
-//   `
-// }
+// function to generate the 'Usage' section
+const generateUsage
+
+// function to generate 'Credits' section
+const generateCredits = data => {
+  if (data.credits && data.credits !== []) {
+    return `
+      ## Credits
+
+      ${creditsArr.map(({ creditName, creditLink }) => {
+        return `
+          - [${creditName}](${creditLink})
+        `
+      })}
+    `;
+  } else {
+    return ``;
+  }
+};
+
+// function to generate the 'Contributing' section
+const generateContributing = data => {
+  if (data.contributing === 'Contributor Covenant') {
+    return `
+      ## Contributing
+
+      Please see [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md) for standard guidelines to contribute.
+    `;
+  } else {
+    return `
+      ## Contributing
+
+      ${data.contributing}
+    `;
+  }
+};
+
+// function to generate the 'Tests' section
+const generateTests = data => {
+  if (data.testing === '') {
+    return data.testing;
+  } else {
+    return `
+      ## Tests
+
+      To run tests, type \`${data.testing}\` at the command line.
+    `;
+  }
+};
+
+// function to generate the email in the 'Contact' section
+const generateEmail = data => {
+  if (data.email === '') {
+    return data.email;
+  } else {
+    return `
+      Email with questions or comments at ${data.email}.
+    `;
+  }
+};
 
 // function to generate markdown for README
 const generateMarkdown = data => {
@@ -29,18 +83,9 @@ const generateMarkdown = data => {
 
     ${data.installation}
 
-    ## Usage
+    ${generateUsage(data)}
 
-    ${data.usage}
-    SHOULD I ADD A STEP BY STEP PROCEDURE?
-
-    ## Credits
-
-    ${data.credits.map(({ creditName, creditLink }) => {
-      return `
-        - [${creditName}](${creditLink})
-      `
-    })}
+    ${generateCredits(data)}    
 
     ## License
 
@@ -50,18 +95,13 @@ const generateMarkdown = data => {
 
     TO BE DEVELOPED
 
-    ## Contributing
+    ${generateContributing(data)}
 
-    ${data.contributing}
-
-    ## Tests
-
-    You can run tests with the following command:
-    ${data.testing}
+    ${generateTests(data)}
 
     ## Contact
 
-    Email me with your questions or comments at ${data.email}.
+    ${generateEmail(data)}
     Check out my other projects at [${data.github}](https://github.com/${data.github}/).
 `;
 }

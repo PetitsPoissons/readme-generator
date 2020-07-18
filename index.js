@@ -51,8 +51,8 @@ const questions = [
         type: 'checkbox',
         name: 'license',
         message: 'Please select a license for your project:',
-        choices: ['Apache 2.0', 'BSL 1.0', 'GPL 3.0', 'ISC', 'MIT', 'MPL 2.0', 'The Unlicense', 'NONE'],
-        default: 'MIT'
+        choices: ['Apache 2.0', 'BSL 1.0', 'GPL 3.0', 'ISC', 'MIT', 'MPL 2.0', 'The Unlicense'],
+        default: 'None'
     },
     {
         type: 'input',
@@ -75,8 +75,7 @@ const questions = [
         type: 'input',
         name: 'contributing',
         message: 'What are the guidelines for other developers to contribute to your project?',
-        default: 'The Contributor Covenant'
-//        default: '[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)'
+        default: 'Contributor Covenant'
     },
     {
         type: 'confirm',
