@@ -46,7 +46,15 @@ const questions = [
     {
         type: 'input',
         name: 'description',
-        message: 'Please write a short description of your project:'
+        message: 'Please write a short description of your project (required):',
+        validate: userInput => {
+            if (userInput) {
+                return true;
+            } else {
+                console.log('Please write a short description of your project.');
+                return false;
+            }
+        }
     },
     {
         type: 'list',
