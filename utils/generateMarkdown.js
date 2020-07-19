@@ -88,11 +88,11 @@ const generateMarkdown = data => {
     
   ## Installation
 
-  To install the dependencies, type \`${data.installation}\` at the command line.
+  To install the dependencies, type \`  ${data.installation}  \` at the command line.
   ${generateUsage(data.usage)}
   ## Tests
 
-  To run tests, type \`${data.testing}\` at the command line.
+  To run tests, type \`  ${data.testing}  \` at the command line.
   ${generateCredits(data)}
   ## Contributing
 

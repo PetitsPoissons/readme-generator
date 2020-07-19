@@ -53,7 +53,7 @@ const questions = [
         name: 'license',
         message: 'Please select a license for your project:',
         choices: Object.keys(licenses),
-        default: 'None'
+        default: 'Unlicense'
     },
     {
         type: 'input',
@@ -112,9 +112,7 @@ const getCredits = function(readmeData) {
     if (!readmeData.credits) {
         readmeData.credits = [];
     };
-    console.log(`
-    ********** Add a credit attribution **********
-    `);
+    console.log('********** Add a credit attribution **********');
     return inquirer
             .prompt(creditQuestions)
             .then(creditData => {
@@ -129,14 +127,9 @@ const getCredits = function(readmeData) {
 
 // function to write README file
 function writeToFile(fileName, data) {
-    console.log('inside writeToFile function')
-    fs.writeFileSync(fileName, data, function(err) {
-        if (err) {
-            return console.log(err);
-        }
-        console.log('Success');
-    })
-}
+    fs.writeFileSync(fileName, data);
+    console.log("Success! Checkout your README file in the 'dist' folder");
+};
 
 // function to initialize program
 function init() {
@@ -150,35 +143,3 @@ function init() {
 
 // function call to initialize program
 init();
-
-/* This mock data can be used for testing purposes
-const mockData =
-    {
-        github: 'PetitsPoissons',
-        confirmEmail: true,
-        email: 'spoisson@gmail.com',
-        title: 'README Generator',
-        description: 'This application generates README files based on command line inputs from the user.',
-        license: [ 'MIT' ],
-        installation: 'npm i',
-        usage: 'Use it when you need to create a README file. It prompts you for all the recommended sections to be included.',
-        testing: 'npm testing',
-        contributing: 'Contributor Covenant',
-        confirmCredits: true,
-        credits: [
-          {
-            creditName: 'MaNJuMind',
-            creditLink: 'https://github.com/ManjuMind',
-            askAgain: true
-          },
-          {
-            creditName: 'PetitsPoissons',
-            creditLink: 'https://github.com/PetitsPoissons',
-            askAgain: false
-          }
-        ]
-    };
-
-const pageMD = generateMarkdown(mockData);
-writeToFile('./dist/README.md', pageMD);
-*/
