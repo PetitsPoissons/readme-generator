@@ -127,8 +127,12 @@ const getCredits = function(readmeData) {
 
 // function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFileSync(fileName, data);
-    console.log("Success! Checkout your README file in the 'dist' folder");
+    fs.writeFile(fileName, data, function(err) {
+        if (err) {
+            console.log(err);
+        }
+        console.log("Success! Checkout your README file in the 'dist' folder");
+    });
 };
 
 // function to initialize program
