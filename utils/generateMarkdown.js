@@ -69,7 +69,8 @@ const generateEmail = data => {
 
 // function to generate markdown for README
 const generateMarkdown = data => {
-  return `# ${data.title}
+  return `![${data.license} license](https://img.shields.io/static/v1?label=license&message=${data.license}&color=green)
+  # ${data.title}
   
   ## Description
 
