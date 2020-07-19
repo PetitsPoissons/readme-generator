@@ -1,3 +1,5 @@
+const licenses = require('./licenses');
+
 //function to generate the table of contents
 const tableContents = data => {
   let output = `* [License](#license)
@@ -9,7 +11,7 @@ const tableContents = data => {
   }
   output += `* [Tests](#tests)
   `;
-  if (data.credits !== '') {
+  if (data.confirmCredits) {
     output += `* [Credits](#credits)
   `;
   }
@@ -19,21 +21,21 @@ return output;
 };
 
 // function to generate the 'Usage' section
-const generateUsage = data => {
-  if (data.usage === '') {
-    return data.usage;
+const generateUsage = usage => {
+  if (usage === '') {
+    return usage;
   } else {
     return `
   ## Usage
     
-  ${data.usage}
+  ${usage}
 `;
   }
 };
 
 // function to generate 'Credits' section
 const generateCredits = data => {
-  if (data.credits && data.credits !== []) {
+  if (data.confirmCredits) {
     const creditsArr = data.credits.map(({ creditName, creditLink }) => {
       return `* [${creditName}](${creditLink})
   `;
@@ -48,28 +50,28 @@ const generateCredits = data => {
 };
 
 // function to generate the 'Contributing' section
-const generateContributing = data => {
-  if (data.contributing === 'Contributor Covenant') {
+const generateContributing = contributing => {
+  if (contributing === 'Contributor Covenant') {
     return `[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)`;
   } else {
     return `
-  ${data.contributing}`;
+  ${contributing}`;
   }
 };
 
 // function to generate the email in the 'Contact' section
 const generateEmail = data => {
-  if (data.email === '') {
-    return data.email;
-  } else {
+  if (data.confirmEmail) {
     return `
   Email with questions or comments at ${data.email}.<br>`;
+  } else {
+    return ``;
   }
 };
 
 // function to generate markdown for README
 const generateMarkdown = data => {
-  return `![${data.license} license](https://img.shields.io/static/v1?label=license&message=${data.license}&color=green)
+  return `${licenses[data.license][1]}
   # ${data.title}
   
   ## Description
@@ -82,19 +84,19 @@ const generateMarkdown = data => {
     
   ## License
 
-  ${data.license}
+  ${licenses[data.license][0]}
     
   ## Installation
 
   To install the dependencies, type \`${data.installation}\` at the command line.
-  ${generateUsage(data)}
+  ${generateUsage(data.usage)}
   ## Tests
 
   To run tests, type \`${data.testing}\` at the command line.
   ${generateCredits(data)}
   ## Contributing
 
-  ${generateContributing(data)}
+  ${generateContributing(data.contributing)}
 
   ## Contact
   ${generateEmail(data)}

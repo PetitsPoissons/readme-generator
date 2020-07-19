@@ -1,5 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
+const licenses = require('./utils/licenses');
 const generateMarkdown = require('./utils/generateMarkdown');
 
 // arrays of questions for user
@@ -48,10 +49,10 @@ const questions = [
         message: 'Please write a short description of your project:'
     },
     {
-        type: 'checkbox',
+        type: 'list',
         name: 'license',
         message: 'Please select a license for your project:',
-        choices: ['Apache 2.0', 'BSL 1.0', 'GPL 3.0', 'ISC', 'MIT', 'MPL 2.0', 'The Unlicense'],
+        choices: Object.keys(licenses),
         default: 'None'
     },
     {
@@ -89,7 +90,7 @@ const creditQuestions = [
     {
         type: 'input',
         name: 'creditName',
-        message: 'Please enter a collaborator or third-party asset you want to credit:'
+        message: 'Please enter the name of a collaborator or third-party asset you want to credit:'
     },
     {
         type: 'input',
@@ -128,6 +129,7 @@ const getCredits = function(readmeData) {
 
 // function to write README file
 function writeToFile(fileName, data) {
+    console.log('inside writeToFile function')
     fs.writeFileSync(fileName, data, function(err) {
         if (err) {
             return console.log(err);
@@ -136,19 +138,20 @@ function writeToFile(fileName, data) {
     })
 }
 
-// // function to initialize program
-// function init() {
-//     inquirer
-//     .prompt(questions)
-//     .then(getCredits)
-//     .then(readmeData => generateMarkdown(readmeData))
-//     .then(pageMD => writeToFile('README.md', pageMD))
-//     .catch(err => console.log(err));
-// };
+// function to initialize program
+function init() {
+    inquirer
+    .prompt(questions)
+    .then(getCredits)
+    .then(readmeData => generateMarkdown(readmeData))
+    .then(pageMD => writeToFile('./dist/README.md', pageMD))
+    .catch(err => console.log(err));
+};
 
-// // function call to initialize program
-// init();
+// function call to initialize program
+init();
 
+/* This mock data can be used for testing purposes
 const mockData =
     {
         github: 'PetitsPoissons',
@@ -178,3 +181,4 @@ const mockData =
 
 const pageMD = generateMarkdown(mockData);
 writeToFile('./dist/README.md', pageMD);
+*/
