@@ -42,5 +42,5 @@
 
   ## Contact
   
-  Email with questions or comments at someEmail@wherever.com.<br>
+  Email with questions or comments at sandrine@manjumind.com.<br>
   Check out other projects at [PetitsPoissons](https://github.com/PetitsPoissons/).
