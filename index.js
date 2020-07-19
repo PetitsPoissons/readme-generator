@@ -63,7 +63,7 @@ const questions = [
     {
         type: 'input',
         name: 'usage',
-        message: 'Do you have any guidelines for using your product?',
+        message: 'What are instructions and examples for using your product?',
     },
     {
         type: 'input',

@@ -1,18 +1,46 @@
+//function to generate the table of contents
+const tableContents = data => {
+  let output = `* [License](#license)
+  * [Installation](#installation)
+  `;
+  if (data.usage !== '') {
+    output += `* [Usage](#usage)
+  `;
+  }
+  output += `* [Tests](#tests)
+  `;
+  if (data.credits !== '') {
+    output += `* [Credits](#credits)
+  `;
+  }
+  output += `* [Contributing](#contributing)
+  * [Contact](#contact)`;
+return output;
+};
+
 // function to generate the 'Usage' section
-const generateUsage
+const generateUsage = data => {
+  if (data.usage === '') {
+    return data.usage;
+  } else {
+    return `
+  ## Usage
+    
+  ${data.usage}
+`;
+  }
+};
 
 // function to generate 'Credits' section
 const generateCredits = data => {
   if (data.credits && data.credits !== []) {
     return `
-      ## Credits
-
-      ${creditsArr.map(({ creditName, creditLink }) => {
-        return `
-          - [${creditName}](${creditLink})
-        `
-      })}
-    `;
+  ## Credits
+    
+  ${data.credits.map(({ creditName, creditLink }) => {
+    return `- [${creditName}](${creditLink})
+  `;
+  })}`;
   } else {
     return ``;
   }
@@ -21,30 +49,10 @@ const generateCredits = data => {
 // function to generate the 'Contributing' section
 const generateContributing = data => {
   if (data.contributing === 'Contributor Covenant') {
-    return `
-      ## Contributing
-
-      Please see [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md) for standard guidelines to contribute.
-    `;
+    return `[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)`;
   } else {
     return `
-      ## Contributing
-
-      ${data.contributing}
-    `;
-  }
-};
-
-// function to generate the 'Tests' section
-const generateTests = data => {
-  if (data.testing === '') {
-    return data.testing;
-  } else {
-    return `
-      ## Tests
-
-      To run tests, type \`${data.testing}\` at the command line.
-    `;
+  ${data.contributing}`;
   }
 };
 
@@ -54,55 +62,42 @@ const generateEmail = data => {
     return data.email;
   } else {
     return `
-      Email with questions or comments at ${data.email}.
-    `;
+  Email with questions or comments at ${data.email}.
+  `;
   }
 };
 
 // function to generate markdown for README
 const generateMarkdown = data => {
-  return `
-    # ${data.title}
+  return `# ${data.title}
+  
+  ## Description
 
-    ## Description
+  ${data.description}
 
-    ${data.description}
+  ## Table of Contents
 
-    ## Table of Contents
-
-    * [Installation](#installation)
-    * [Usage](#usage)
-    * [Credits](#credits)
-    * [License](#license)
-    * [Badges](#badges)
-    * [Contributing](#contributing)
-    * [Tests](#tests)
-    * [Contact](#contact)
+  ${tableContents(data)}
     
-    ## Installation
+  ## License
 
-    ${data.installation}
+  ${data.license}
+    
+  ## Installation
 
-    ${generateUsage(data)}
+  To install the dependencies, type \`${data.installation}\` at the command line.
+  ${generateUsage(data)}
+  ## Tests
 
-    ${generateCredits(data)}    
+  To run tests, type \`${data.testing}\` at the command line.
+  ${generateCredits(data)}
+  ## Contributing
 
-    ## License
+  ${generateContributing(data)}
 
-    ${data.license}
-
-    ## Badges
-
-    TO BE DEVELOPED
-
-    ${generateContributing(data)}
-
-    ${generateTests(data)}
-
-    ## Contact
-
-    ${generateEmail(data)}
-    Check out my other projects at [${data.github}](https://github.com/${data.github}/).
+  ## Contact
+  ${generateEmail(data)}
+  Check out other projects at [${data.github}](https://github.com/${data.github}/).
 `;
 }
 
