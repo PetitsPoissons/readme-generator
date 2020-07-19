@@ -128,7 +128,7 @@ const getCredits = function(readmeData) {
 
 // function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, function(err) {
+    fs.writeFileSync(fileName, data, function(err) {
         if (err) {
             return console.log(err);
         }
@@ -136,15 +136,45 @@ function writeToFile(fileName, data) {
     })
 }
 
-// function to initialize program
-function init() {
-    inquirer
-    .prompt(questions)
-    .then(getCredits)
-    .then(readmeData => generateMarkdown(readmeData))
-    .then(pageMD => writeToFile('README.md', pageMD))
-    .catch(err => console.log(err));
-};
+// // function to initialize program
+// function init() {
+//     inquirer
+//     .prompt(questions)
+//     .then(getCredits)
+//     .then(readmeData => generateMarkdown(readmeData))
+//     .then(pageMD => writeToFile('README.md', pageMD))
+//     .catch(err => console.log(err));
+// };
 
-// function call to initialize program
-init();
+// // function call to initialize program
+// init();
+
+const mockData =
+    {
+        github: 'PetitsPoissons',
+        confirmEmail: true,
+        email: 'spoisson@gmail.com',
+        title: 'README Generator',
+        description: 'This application generates README files based on command line inputs from the user.',
+        license: [ 'MIT' ],
+        installation: 'npm i',
+        usage: 'Use it when you need to create a README file. It prompts you for all the recommended sections to be included.',
+        testing: 'npm testing',
+        contributing: 'Contributor Covenant',
+        confirmCredits: true,
+        credits: [
+          {
+            creditName: 'MaNJuMind',
+            creditLink: 'https://github.com/ManjuMind',
+            askAgain: true
+          },
+          {
+            creditName: 'PetitsPoissons',
+            creditLink: 'https://github.com/PetitsPoissons',
+            askAgain: false
+          }
+        ]
+    };
+
+const pageMD = generateMarkdown(mockData);
+writeToFile('./dist/README.md', pageMD);

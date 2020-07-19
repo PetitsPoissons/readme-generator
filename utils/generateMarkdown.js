@@ -34,13 +34,14 @@ const generateUsage = data => {
 // function to generate 'Credits' section
 const generateCredits = data => {
   if (data.credits && data.credits !== []) {
+    const creditsArr = data.credits.map(({ creditName, creditLink }) => {
+      return `* [${creditName}](${creditLink})
+  `;
+    });
     return `
   ## Credits
-    
-  ${data.credits.map(({ creditName, creditLink }) => {
-    return `- [${creditName}](${creditLink})
-  `;
-  })}`;
+
+  ${creditsArr.join('')}`;
   } else {
     return ``;
   }
@@ -62,8 +63,7 @@ const generateEmail = data => {
     return data.email;
   } else {
     return `
-  Email with questions or comments at ${data.email}.
-  `;
+  Email with questions or comments at ${data.email}.<br>`;
   }
 };
 

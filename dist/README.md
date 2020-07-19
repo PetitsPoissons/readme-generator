@@ -31,18 +31,15 @@
   To run tests, type `npm testing` at the command line.
   
   ## Credits
-    
-  - [PetitsPoissons](https://github.com/PetitsPoissons)
-  ,- [MaNJuMind](https://github.com/ManjuMind)
-  
+
+  * [MaNJuMind](https://github.com/ManjuMind)
+  * [PetitsPoissons](https://github.com/PetitsPoissons)
   
   ## Contributing
 
-  
   [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
   ## Contact
   
-  Email with questions or comments at spoisson@gmail.com.
-  
-  Check out my other projects at [PetitsPoissons](https://github.com/PetitsPoissons/).
+  Email with questions or comments at spoisson@gmail.com.<br>
+  Check out other projects at [PetitsPoissons](https://github.com/PetitsPoissons/).
